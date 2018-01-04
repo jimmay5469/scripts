@@ -9,7 +9,7 @@ request(normalizeUrl(process.argv[2]), function (error, response, html) {
     const imageUrl = $(process.argv[3]).attr('src');
 
     Jimp.read(normalizeUrl(imageUrl), function(err, image) {
-      image.write(process.argv[4]);
+      image.write(`${process.argv[4].split('.').reverse().slice(1).reverse().join('.')}.${image.hash()}.${process.argv[4].split('.').pop()}`);
     });
   }
 });
